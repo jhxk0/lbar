@@ -1,5 +1,5 @@
 lbar (launch bar) by Hüseyin Kalyoncu
 this is a simple application launch bar for XWindows desktops similar to CDE's desktop bar.
-Very old code by young version of me from pre-Gnome and pre-KDE era so please apologise for any inconvenience.
+Very old code by young version of me from pre-Gnome and pre-KDE era so please excuse me for any inconvenience.
 
 To test this simply modify Makefile for your platform then run 'make'.
