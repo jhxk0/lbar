@@ -2,9 +2,6 @@
 #include "lbar.h"
 #include "list.h"
 
-//#define MAXB		7
-//#define RFILE		"/home/kalyon/.lbarrc"
-
 //XtActionProc showtooltip(Widget w, XEvent *event, String *args, int *num_args);
 //XtActionProc destroy(Widget parent, XEvent *event, String *args, int *num_args);
 
@@ -37,13 +34,12 @@ static XtActionsRec noDragActions[] =
         {{"DoNothing", (XtActionProc) DoNothing}};
 
 
-static char *path, *path2;//*path[2*MAXB]; 
+static char *path, *path2;
 //static int bcount;
 
 char *get_path(char *line){
 	char x;
 	int i = 0;
-	//char temp[100];
 	for(i=0;i<strlen(line);i++){
 		x = line[i];
 	if(x=='\n')
@@ -54,7 +50,7 @@ char *get_path(char *line){
 
 int getrfile(){
 	FILE *fp;
-	int i, j;
+	int j;
 	char *ch, *ch2;
 	if((fp = fopen(RFILE, "r")) == NULL){
 		perror("fopen");
@@ -62,7 +58,6 @@ int getrfile(){
 	}
 	lbar_item *c;
 	init_list();
-	//i=0;
 	j=1;	
 	while(!feof(fp)){
 			path = (char *)malloc(50);
@@ -73,11 +68,9 @@ int getrfile(){
 			ch2 = get_path(path2);	
 			//strcpy(path[j], temp);
 			c = new_item();
-			c->icon_path = ch;//path[j];
-			c->app_path = ch2;//path[j+1];
+			c->icon_path = ch;
+			c->app_path = ch2;
 			add_list(c, j);
-			//printf("%s\n", path[j]);
-			//i = 0;
 			j++;
 			//bcount++;
 	}
@@ -242,8 +235,7 @@ void updatetimedate(){
 void set_buttons(lbar_item *ce){
 	while(ce->next!=NULL){
 	if(ce->id > 1){
-		//printf("%d\n%s\n%s\n", ce->id, ce->icon_path, ce->app_path);
-	ce->button = XtVaCreateManagedWidget("but", xmPushButtonWidgetClass,
+	  ce->button = XtVaCreateManagedWidget("but", xmPushButtonWidgetClass,
 				form,
 				XmNshadowThickness, 0,
 				XmNhighlightThickness, 0,
@@ -307,27 +299,6 @@ int main(int argc, char **argv){
 	XAllocColor(XtDisplay(top), DefaultColormapOfScreen(XtScreen(top)), &co);*/
 	//print_list(h);
 	set_buttons(h);	
-/*	cframe = XtVaCreateManagedWidget("cframe", xmFrameWidgetClass,
-				form,
-				//XmNheight, 30,
-				//XmNwidth, 60,
-				//XmNtopOffset, 3,			
-				//XmNleftOffset,2,
-				//XmNrightOffset, 2,
-				//XmNbottomOffset,3,
-				//XmNshadowType, XmSHADOW_IN,
-				XmNtopAttachment, XmATTACH_FORM,
-				//XmNrightAttachment, XmATTACH_FORM,
-				XmNbottomAttachment, XmATTACH_FORM,
-				XmNleftAttachment, XmATTACH_WIDGET,
-				XmNleftWidget, sep,
-				NULL);
-
-	tlabel = XtVaCreateManagedWidget("tlabel", xmLabelWidgetClass,
-				cframe,
-				XmNwidth, 120,
-				//XmNbackground, co.pixel,
-				NULL);	 */
 	 lbut = XtVaCreateManagedWidget("lbut", xmPushButtonWidgetClass,
 				form,
 				XmNshadowThickness, 0,
