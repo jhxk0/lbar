@@ -1,5 +1,4 @@
 #include "list.h"
-#define text "deneme"
 
 extern lbar_item *h, *t;
 
@@ -46,19 +45,6 @@ void print_list(lbar_item *e){
 		printf("%s\n%s\n%d %d\n", e->app_path, e->icon_path, e->id, e->prev->id);
 		e = e->next;
 	}
-//	if(e->next==NULL)
-//		printf("%s %d\n", e->app_path, e->button);
 }
 		
-/*int main(){
-	int i;
-	lbar_item *c;
-	init_list();
-	for(i=2;i<10;i++){
-		c=new_item();
-		add_list(c, i);
-	}
-	print_list(h);
-	return 0;
-}*/
 		
